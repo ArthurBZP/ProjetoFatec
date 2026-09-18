@@ -63,7 +63,7 @@
         </div>
 
         <div class="hero__card-box">
-          <div class="chat-preview-card">
+          <div class="chat-preview-card" id="chat-container">
             <div class="chat-preview-card__header">
               <span class="chat-status"></span>
               <div>
@@ -71,15 +71,18 @@
                 <p>Sigiloso e Anônimo</p>
               </div>
             </div>
-            <div class="chat-preview-card__body">
-              <p class="chat-msg chat-msg--received">Olá, como posso ajudar você hoje?</p>
-              <p class="chat-msg chat-msg--sent">Preciso de orientação sobre proteção...</p>
+            <!-- Modificado para rolagem de mensagens -->
+            <div class="chat-preview-card__body" id="chat-box" style="height: 250px; overflow-y: auto;">
+              <p class="chat-msg chat-msg--received">Olá, eu sou a assistente do Coletivo Margarida. Você está em um ambiente seguro. Como posso ajudar você hoje?</p>
             </div>
-            <a href="#" class="btn btn--secondary btn--full">Iniciar conversa discreta</a>
+            
+            <!-- Nova área de input e botão -->
+            <div class="chat-input-area" style="display: flex; gap: 8px; margin-top: 10px;">
+              <input type="text" id="user-input" placeholder="Digite aqui de forma segura..." style="flex: 1; padding: 12px; border: 1px solid #E5DEC3; border-radius: 8px;" onkeypress="handleKeyPress(event)">
+              <button onclick="sendMessage()" class="btn btn--secondary">Enviar</button>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
 
     <!-- Emergency Contacts Section -->
     <section id="canais-emergencia" class="section section--light">
@@ -303,6 +306,54 @@
       </div>
     </div>
   </footer>
+  
+  <script>
+    async function sendMessage() {
+      const inputField = document.getElementById('user-input');
+      const chatBox = document.getElementById('chat-box');
+      const message = inputField.value.trim();
+
+      if (!message) return;
+
+      // 1. Adiciona a mensagem da usuária na tela
+      chatBox.innerHTML += `<p class="chat-msg chat-msg--sent">${message}</p>`;
+      inputField.value = '';
+      chatBox.scrollTop = chatBox.scrollHeight;
+
+      // 2. Envia para o backend (Flask)
+      try {
+        const response = await fetch('/chat', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ message: message })
+        });
+
+        const data = await response.json();
+
+        // 3. Adiciona a resposta do Gemini na tela
+        if (data.response) {
+            // Converte quebras de linha em <br>
+            const formattedResponse = data.response.replace(/\n/g, '<br>');
+            chatBox.innerHTML += `<p class="chat-msg chat-msg--received">${formattedResponse}</p>`;
+        } else {
+            chatBox.innerHTML += `<p class="chat-msg chat-msg--received" style="color: red;">Erro ao contatar servidor.</p>`;
+        }
+      } catch (error) {
+        chatBox.innerHTML += `<p class="chat-msg chat-msg--received" style="color: red;">Erro de conexão.</p>`;
+      }
+      
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    // Permite enviar apertando Enter
+    function handleKeyPress(event) {
+      if (event.key === "Enter") {
+        sendMessage();
+      }
+    }
+  </script>
 
 </body>
 </html>

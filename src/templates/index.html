@@ -1,314 +1,165 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-PT">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Coletivo Margarida — Apoio e Acolhimento a Mulheres</title>
-  <meta name="description" content="Plataforma de apoio, acolhimento e guias de proteção para mulheres em situação de vulnerabilidade.">
+  <title>Segura — Você não está sozinha</title>
   
-  <!-- Fonte Serifada para Títulos e Sans-Serif para Corpo -->
+  <!-- Fonte Nunito para um visual mais acolhedor e moderno -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
   
+  <!-- O Flask carrega o CSS a partir da pasta static -->
   <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-  
 </head>
+<link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
 <body>
 
-  <!-- Top Safety Banner / Quick Exit -->
-  <div class="safety-bar">
-    <div class="container safety-bar__content">
-      <span>Precisa sair rapidamente desta página?</span>
-      <a href="https://www.google.com" class="btn btn--danger-sm">Sair do Site Agora</a>
+  <!-- Navegação Superior -->
+  <header class="navbar">
+    <div class="logo">
+      <span class="logo-icon">💜</span>
+      <div class="logo-text">
+        <h1>Segura</h1>
+        <p>Você não está sozinha</p>
+      </div>
     </div>
-  </div>
-
-  <!-- Header -->
-  <header class="header">
-    <div class="container header__container">
-      <a href="#" class="logo">
-        <span class="logo__icon">🌸</span>
-        <span class="logo__text">Coletivo Margarida</span>
-      </a>
-
-      <nav class="nav">
-        <ul class="nav__list">
-          <li><a href="#canais-emergencia" class="nav__link">Canais de Ajuda</a></li>
-          <li><a href="#como-funciona" class="nav__link">Como Funciona</a></li>
-          <li><a href="#guias-protecao" class="nav__link">Guias de Proteção</a></li>
-          <li><a href="#depoimentos" class="nav__link">Depoimentos</a></li>
-          <li><a href="#faq" class="nav__link">Dúvidas</a></li>
-        </ul>
-      </nav>
-
-      <a href="tel:180" class="btn btn--dark">Ligue 180</a>
-    </div>
+    <nav class="nav-links">
+      <a href="#"><span class="icon">🏠</span> Início</a>
+      <a href="#"><span class="icon">🤝</span> Apoio</a>
+      <a href="#"><span class="icon">📋</span> Direitos</a>
+      <a href="#"><span class="icon">📞</span> Contatos de Emergência</a>
+    </nav>
+    <a href="https://google.com" class="btn-exit">
+      <span class="icon">🚪</span>
+      <div>
+        <strong>Saída Rápida</strong>
+        <span>Sair do site</span>
+      </div>
+    </a>
   </header>
 
-  <main>
-    <!-- Hero Section -->
-    <section class="hero">
-      <div class="container hero__grid">
-        <div class="hero__text-content">
-          <span class="badge">Acolhimento Seguro e Gratuito</span>
-          <h1 class="hero__title">Você não está sozinha. Estamos aqui para ouvir e apoiar.</h1>
-          <p class="hero__description">
-            Oferecemos suporte emocional, orientação jurídica e encaminhamento seguro para mulheres em momentos de vulnerabilidade e violência doméstica.
-          </p>
-          <div class="hero__actions">
-            <a href="#canais-emergencia" class="btn btn--primary">Preciso de ajuda agora</a>
-            <a href="#como-funciona" class="btn btn--outline">Entenda como funciona</a>
-          </div>
-        </div>
-
-        <div class="hero__card-box">
-          <div class="chat-preview-card" id="chat-container">
-            <div class="chat-preview-card__header">
-              <span class="chat-status"></span>
-              <div>
-                <strong>Atendimento On-line</strong>
-                <p>Sigiloso e Anônimo</p>
-              </div>
-            </div>
-            <!-- Modificado para rolagem de mensagens -->
-            <div class="chat-preview-card__body" id="chat-box" style="height: 250px; overflow-y: auto;">
-              <p class="chat-msg chat-msg--received">Olá, eu sou a assistente do Coletivo Margarida. Você está em um ambiente seguro. Como posso ajudar você hoje?</p>
-            </div>
-            
-            <!-- Nova área de input e botão -->
-            <div class="chat-input-area" style="display: flex; gap: 8px; margin-top: 10px;">
-              <input type="text" id="user-input" placeholder="Digite aqui de forma segura..." style="flex: 1; padding: 12px; border: 1px solid #E5DEC3; border-radius: 8px;" onkeypress="handleKeyPress(event)">
-              <button onclick="sendMessage()" class="btn btn--secondary">Enviar</button>
-            </div>
-          </div>
-        </div>
-
-    <!-- Emergency Contacts Section -->
-    <section id="canais-emergencia" class="section section--light">
-      <div class="container">
-        <span class="section__tag">Canais de Atendimento Imediato</span>
-        <h2 class="section__title">Se você corre risco imediato, ligue para um canal oficial</h2>
-
-        <div class="grid grid--3">
-          <div class="card card--emergency">
-            <span class="card__icon">📞</span>
-            <h3>Central da Mulher</h3>
-            <p>Atendimento nacional gratuito e confidencial 24 horas.</p>
-            <div class="card__footer">
-              <span class="emergency-number">180</span>
-              <a href="tel:180" class="btn btn--dark btn--sm">Ligar 180</a>
-            </div>
-          </div>
-
-          <div class="card card--emergency">
-            <span class="card__icon">🛡️</span>
-            <h3>Polícia Militar</h3>
-            <p>Para casos de emergência e risco imediato de violência.</p>
-            <div class="card__footer">
-              <span class="emergency-number">190</span>
-              <a href="tel:190" class="btn btn--dark btn--sm">Ligar 190</a>
-            </div>
-          </div>
-
-          <div class="card card--emergency">
-            <span class="card__icon">🚑</span>
-            <h3>SAMU (Ambulância)</h3>
-            <p>Socorro médico de urgência em situações de agressão.</p>
-            <div class="card__footer">
-              <span class="emergency-number">192</span>
-              <a href="tel:192" class="btn btn--dark btn--sm">Ligar 192</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- How it Works Section -->
-    <section id="como-funciona" class="section">
-      <div class="container">
-        <div class="section-header-split">
+  <!-- Layout Principal -->
+  <main class="dashboard container">
+    
+    <!-- Barra Lateral Esquerda -->
+    <aside class="sidebar">
+      <h2 class="sidebar-title">Você merece segurança, respeito e liberdade.</h2>
+      <p class="sidebar-desc">Este é um espaço seguro para você conversar, tirar dúvidas, receber orientações e encontrar apoio. Estamos aqui para te acolher, sem julgamentos.</p>
+      
+      <ul class="features-list">
+        <li>
+          <span class="feature-icon">🛡️</span>
           <div>
-            <span class="section__tag">Cuidado e Privacidade</span>
-            <h2 class="section__title">Como funciona o nosso apoio e acolhimento silencioso</h2>
+            <strong>Informação confiável</strong>
+            <p>Conteúdo atualizado e baseado em leis.</p>
           </div>
-          <p class="section__lead">
-            Garantimos sigilo absoluto. Suas informações não são compartilhadas e todo o contato é feito com foco na sua total segurança.
-          </p>
-        </div>
-
-        <div class="grid grid--3">
-          <div class="step-card">
-            <span class="step-card__num">01</span>
-            <h3>Acesso Seguro e Privado</h3>
-            <p>Nossa plataforma conta com botão de saída rápida e criptografia para garantir que seu histórico de navegação permaneça protegido.</p>
+        </li>
+        <li>
+          <span class="feature-icon">🔒</span>
+          <div>
+            <strong>Sua privacidade importa</strong>
+            <p>Você pode conversar anonimamente.</p>
           </div>
-
-          <div class="step-card">
-            <span class="step-card__num">02</span>
-            <h3>Atendimento sem Julgamento</h3>
-            <p>Equipes multidisciplinares prontas para escutar suas necessidades e oferecer caminhos jurídicos e psicossociais adequados.</p>
+        </li>
+        <li>
+          <span class="feature-icon">💜</span>
+          <div>
+            <strong>Você não está sozinha</strong>
+            <p>Aqui você encontra apoio e orientação.</p>
           </div>
+        </li>
+      </ul>
 
-          <div class="step-card">
-            <span class="step-card__num">03</span>
-            <h3>Orientação e Encaminhamento</h3>
-            <p>Acompanhamento em medidas protetivas, abrigamento provisório e contatos diretos com a rede de apoio local da sua cidade.</p>
+      <div class="sidebar-illustration">
+        <p>Juntas somos mais fortes 💜</p>
+        <!-- Representação do espaço onde ficaria o desenho -->
+        <div class="illustration-placeholder">👩🏽👩🏻👩🏿</div>
+      </div>
+    </aside>
+
+    <!-- Área Principal de Chat -->
+    <section class="main-content">
+      
+      <!-- Janela do Chat -->
+      <div class="chat-container" id="chat-container">
+        
+        <header class="chat-header">
+          <div class="bot-profile">
+            <div class="bot-avatar">🤖</div>
+            <div class="bot-info">
+              <h3>Ayla</h3>
+              <p>Sua assistente virtual</p>
+            </div>
+          </div>
+          <div class="chat-status">
+            <span class="status-dot"></span> Online &nbsp;|&nbsp; 🛡️ Conversa segura
+          </div>
+        </header>
+
+        <!-- Onde as mensagens aparecem -->
+        <div class="chat-box" id="chat-box">
+          <p class="chat-msg chat-msg--received">Olá! Eu sou a <strong>Ayla</strong>, sua assistente virtual. 💜<br><br>Estou aqui para te apoiar, responder suas dúvidas sobre direitos, orientar sobre como denunciar e indicar os melhores caminhos de ajuda.<br><br>Como posso te ajudar hoje?</p>
+        </div>
+
+      </div>
+
+      <!-- Controlos de Entrada (Imediatamente abaixo do chat) -->
+      <div class="controls-wrapper">
+        <div class="input-area">
+          <input type="text" id="user-input" placeholder="Digite sua mensagem aqui..." onkeypress="handleKeyPress(event)">
+          <div class="input-actions">
+            <button class="btn-icon">📎</button>
+            <button class="btn-icon">🎤</button>
+            <button onclick="sendMessage()" class="btn-send">➤</button>
+          </div>
+        </div>
+        
+        <a href="tel:180" class="btn-call-180">
+          <span class="icon">📞</span>
+          <div>
+            <strong>Ligar 180</strong>
+            <span>Violência contra a mulher é crime. Denuncie!</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Cartões de Acesso Rápido -->
+      <div class="quick-access">
+        <h3>⚡ Acesso rápido</h3>
+        <div class="cards-grid">
+          <div class="card">
+            <div class="card-icon" style="background: #9b72cb;">⚖️</div>
+            <h4>Quais são os meus direitos?</h4>
+            <p>Saiba sobre seus direitos e garantias.</p>
+            <span class="card-arrow">➔</span>
+          </div>
+          <div class="card">
+            <div class="card-icon" style="background: #48BCAE;">🛡️</div>
+            <h4>Como denunciar de forma anônima?</h4>
+            <p>Entenda os canais e passo a passo.</p>
+            <span class="card-arrow">➔</span>
+          </div>
+          <div class="card">
+            <div class="card-icon" style="background: #7D6B9C;">💜</div>
+            <h4>Preciso de acolhimento psicológico</h4>
+            <p>Saiba onde encontrar apoio emocional.</p>
+            <span class="card-arrow">➔</span>
+          </div>
+          <div class="card">
+            <div class="card-icon" style="background: #5A9BD5;">🏥</div>
+            <h4>Onde buscar ajuda perto de mim?</h4>
+            <p>Serviços, abrigos e atendimento especializado.</p>
+            <span class="card-arrow">➔</span>
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- Guides & Tools Section -->
-    <section id="guias-protecao" class="section section--light">
-      <div class="container text-center">
-        <span class="section__tag">Guias Rápidos e Práticos</span>
-        <h2 class="section__title">Ferramentas de auto-orientação para sua proteção</h2>
-
-        <div class="grid grid--3 u-margin-top-lg">
-          <article class="guide-card">
-            <div class="guide-card__badge">Segurança Digital</div>
-            <h3>Como limpar rastros e histórico de navegação</h3>
-            <p>Aprenda a apagar dados de busca e utilizar abas privativas de forma segura no celular e computador.</p>
-            <a href="#" class="link-arrow">Ver guia completo &rarr;</a>
-          </article>
-
-          <article class="guide-card">
-            <div class="guide-card__badge">Direitos Legais</div>
-            <h3>Medida Protetiva de Urgência: Entenda seus Direitos</h3>
-            <p>Passo a passo sobre como solicitar a medida na delegacia ou Defensoria Pública sem complicação.</p>
-            <a href="#" class="link-arrow">Ver guia completo &rarr;</a>
-          </article>
-
-          <article class="guide-card">
-            <div class="guide-card__badge">Plano de Emergência</div>
-            <h3>Como preparar uma mala de saída de emergência discreta</h3>
-            <p>Lista de documentos, itens essenciais e cuidados ao planejar uma saída rápida com segurança.</p>
-            <a href="#" class="link-arrow">Ver guia completo &rarr;</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section id="depoimentos" class="section">
-      <div class="container text-center">
-        <span class="section__tag">Relatos de Recomeço</span>
-        <h2 class="section__title">Mulheres que encontraram um caminho seguro</h2>
-
-        <div class="grid grid--2 u-margin-top-lg">
-          <blockquote class="testimonial-card">
-            <p>"Encontrei no coletivo o suporte que precisava para entender que não estava sozinha. A orientação jurídica foi fundamental para minha tranquilidade."</p>
-            <footer>
-              <strong>Maria L.</strong>
-              <span>São Paulo - SP</span>
-            </footer>
-          </blockquote>
-
-          <blockquote class="testimonial-card">
-            <p>"O atendimento sigiloso me deu a coragem necessária para buscar ajuda. Hoje consigo planejar meu futuro e o dos meus filhos com paz."</p>
-            <footer>
-              <strong>Carla M.</strong>
-              <span>Rio de Janeiro - RJ</span>
-            </footer>
-          </blockquote>
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section id="faq" class="section section--light">
-      <div class="container container--narrow">
-        <div class="text-center">
-          <span class="section__tag">Dúvidas Frequentes</span>
-          <h2 class="section__title">Esclareça suas principais dúvidas</h2>
-        </div>
-
-        <div class="accordion u-margin-top-lg">
-          <details class="accordion__item">
-            <summary class="accordion__header">O atendimento é realmente confidencial?</summary>
-            <div class="accordion__body">
-              <p>Sim. Todas as conversas são estritamente confidenciais. Não registramos dados pessoais sem seu consentimento explícito.</p>
-            </div>
-          </details>
-
-          <details class="accordion__item">
-            <summary class="accordion__header">Preciso registrar boletim de ocorrência para ser atendida?</summary>
-            <div class="accordion__body">
-              <p>Não. O acolhimento psicológico e de orientação ocorre independentemente da realização de denúncia formal.</p>
-            </div>
-          </details>
-
-          <details class="accordion__item">
-            <summary class="accordion__header">Como funcionam os serviços de abrigo?</summary>
-            <div class="accordion__body">
-              <p>Em casos de risco iminente à vida, fazemos o encaminhamento direto para redes de acolhimento institucional e abrigos sigilosos da sua região.</p>
-            </div>
-          </details>
-
-          <details class="accordion__item">
-            <summary class="accordion__header">Os serviços oferecidos são gratuitos?</summary>
-            <div class="accordion__body">
-              <p>Sim, 100% dos atendimentos, apoios jurídicos e orientações prestadas pelo Coletivo são totalmente gratuitos.</p>
-            </div>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <!-- Final CTA Section -->
-    <section class="cta-banner">
-      <div class="container text-center">
-        <h2 class="cta-banner__title">A ajuda de que você precisa, com a discrição que você exige.</h2>
-        <p class="cta-banner__text">Estamos prontos para ouvir você em um ambiente seguro, acolhedor e totalmente sigiloso.</p>
-        <div class="cta-banner__actions">
-          <a href="tel:180" class="btn btn--white">Falar com o 180 agora</a>
-          <a href="#canais-emergencia" class="btn btn--outline-white">Ver mais canais de suporte</a>
-        </div>
-      </div>
     </section>
   </main>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container footer__grid">
-      <div class="footer__about">
-        <a href="#" class="logo logo--white">
-          <span class="logo__icon">🌸</span>
-          <span class="logo__text">Coletivo Margarida</span>
-        </a>
-        <p>Iniciativa independente de apoio, proteção e orientação a mulheres em situação de vulnerabilidade.</p>
-      </div>
-
-      <div class="footer__links">
-        <h4>Acesso Rápido</h4>
-        <ul>
-          <li><a href="#canais-emergencia">Canais de Emergência</a></li>
-          <li><a href="#como-funciona">Como Funciona</a></li>
-          <li><a href="#guias-protecao">Guias de Proteção</a></li>
-          <li><a href="#faq">Dúvidas Frequentes</a></li>
-        </ul>
-      </div>
-
-      <div class="footer__links">
-        <h4>Atendimento</h4>
-        <ul>
-          <li>Central de Atendimento: 180</li>
-          <li>Atendimento On-line Sigiloso</li>
-          <li>Rede de Apoio Local</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="footer__bottom">
-      <div class="container">
-        <p>&copy; 2026 Coletivo Margarida. Todos os direitos reservados. Conteúdo estritamente informativo.</p>
-      </div>
-    </div>
-  </footer>
-
-<!-- Importa o arquivo JavaScript usando o Flask -->
+  <!-- O script original que faz a ligação com o Python continua aqui -->
   <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-
 </body>
 </html>

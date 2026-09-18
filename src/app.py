@@ -20,7 +20,7 @@ Regras:
 4. Responda de forma concisa e clara."""
 
 model = genai.GenerativeModel(
-    model_name="gemini-1.5-flash",
+    model_name="gemini-3.5-flash",
     system_instruction=system_instruction
 )
 # Mantém o histórico da conversa vivo na memória do servidor

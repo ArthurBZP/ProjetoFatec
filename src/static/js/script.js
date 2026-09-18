@@ -10,7 +10,11 @@ async function sendMessage() {
   inputField.value = '';
   chatBox.scrollTop = chatBox.scrollHeight;
 
-  // 2. Envia para o backend (Flask)
+  // 2. Adiciona o indicador de "Ayla está digitando..."
+  const typingId = "typing-" + Date.now();
+  chatBox.innerHTML += `<p class="chat-msg chat-msg--received" id="${typingId}"><em>Ayla está digitando...</em></p>`;
+  chatBox.scrollTop = chatBox.scrollHeight;
+
   try {
     const response = await fetch('/chat', {
       method: 'POST',
@@ -22,19 +26,23 @@ async function sendMessage() {
 
     const data = await response.json();
 
-    // 3. Adiciona a resposta do Gemini na tela
+    // 3. Remove o indicador visual de digitação
+    const typingIndicator = document.getElementById(typingId);
+    if (typingIndicator) typingIndicator.remove();
+
+    // 4. Adiciona a resposta final do Gemini na tela
     if (data.response) {
-        // Converte quebras de linha em <br> para manter a formatação do texto
         const formattedResponse = data.response.replace(/\n/g, '<br>');
         chatBox.innerHTML += `<p class="chat-msg chat-msg--received">${formattedResponse}</p>`;
     } else {
         chatBox.innerHTML += `<p class="chat-msg chat-msg--received" style="color: red;">Erro ao contatar servidor.</p>`;
     }
   } catch (error) {
-    chatBox.innerHTML += `<p class="chat-msg chat-msg--received" style="color: red;">Erro de conexão.</p>`;
+    const typingIndicator = document.getElementById(typingId);
+    if (typingIndicator) typingIndicator.remove();
+    chatBox.innerHTML += `<p class="chat-msg chat-msg--received" style="color: red;">Erro de conexão com o servidor local.</p>`;
   }
   
-  // Rola o chat para baixo novamente após receber a resposta
   chatBox.scrollTop = chatBox.scrollHeight;
 }
 

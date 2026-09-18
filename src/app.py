@@ -28,7 +28,7 @@ chat = model.start_chat(history=[])
 
 @app.route("/")
 def home():
-    # O Flask vai buscar o index.html automaticamente dentro de templates[cite: 1]
+    # O Flask vai buscar o index.html automaticamente dentro de templates
     return render_template("index.html")
 
 # Nova rota para processar as mensagens do chat
@@ -43,9 +43,13 @@ def chat_endpoint():
     try:
         response = chat.send_message(user_msg)
         return jsonify({"response": response.text})
+    
+    # É AQUI QUE A MUDANÇA ACONTECEU 👇
     except Exception as e:
+        print(f"ERRO DO GEMINI: {e}") 
         return jsonify({"error": "Desculpe, ocorreu um erro no sistema. Tente novamente ou ligue para 180."}), 500
+    # FIM DA MUDANÇA 👆
 
 if __name__ == "__main__":
-    # Roda o servidor local no modo de desenvolvimento (atualiza sozinho ao salvar)[cite: 1]
+    # Roda o servidor local no modo de desenvolvimento (atualiza sozinho ao salvar)
     app.run(debug=True)

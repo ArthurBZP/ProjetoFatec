@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Segura — Você não está sozinha</title>
+  
+  <!-- Fonte Nunito para um visual mais acolhedor e moderno -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- O Flask carrega o CSS a partir da pasta static -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+<body>
+
+  <!-- Navegação Superior -->
+  <header class="navbar">
+    <div class="logo">
+      <span class="logo-icon">💜</span>
+      <div class="logo-text">
+        <h1>Segura</h1>
+        <p>Você não está sozinha</p>
+      </div>
+    </div>
+    <nav class="nav-links">
+      <a href="#"><span class="icon">🏠</span> Início</a>
+      <a href="#"><span class="icon">🤝</span> Apoio</a>
+      <a href="#"><span class="icon">📋</span> Direitos</a>
+      <a href="#"><span class="icon">📞</span> Contatos de Emergência</a>
+    </nav>
+    <a href="https://google.com" class="btn-exit">
+      <span class="icon">🚪</span>
+      <div>
+        <strong>Saída Rápida</strong>
+        <span>Sair do site</span>
+      </div>
+    </a>
+  </header>
+
+  <!-- Layout Principal -->
+  <main class="dashboard container">
+    
+    <!-- Barra Lateral Esquerda -->
+    <aside class="sidebar">
+      <h2 class="sidebar-title">Você merece segurança, respeito e liberdade.</h2>
+      <p class="sidebar-desc">Este é um espaço seguro para você conversar, tirar dúvidas, receber orientações e encontrar apoio. Estamos aqui para te acolher, sem julgamentos.</p>
+      
+      <ul class="features-list">
+        <li>
+          <span class="feature-icon">🛡️</span>
+          <div>
+            <strong>Informação confiável</strong>
+            <p>Conteúdo atualizado e baseado em leis.</p>
+          </div>
+        </li>
+        <li>
+          <span class="feature-icon">🔒</span>
+          <div>
+            <strong>Sua privacidade importa</strong>
+            <p>Você pode conversar anonimamente.</p>
+          </div>
+        </li>
+        <li>
+          <span class="feature-icon">💜</span>
+          <div>
+            <strong>Você não está sozinha</strong>
+            <p>Aqui você encontra apoio e orientação.</p>
+          </div>
+        </li>
+      </ul>
+
+      <div class="sidebar-illustration">
+        <p>Juntas somos mais fortes 💜</p>
+        <!-- Representação do espaço onde ficaria o desenho -->
+        <div class="illustration-placeholder">👩🏽👩🏻👩🏿</div>
+      </div>
+    </aside>
+
+    <!-- Área Principal de Chat -->
+    <section class="main-content">
+      
+      <!-- Janela do Chat -->
+      <div class="chat-container" id="chat-container">
+        
+        <header class="chat-header">
+          <div class="bot-profile">
+            <div class="bot-avatar">🤖</div>
+            <div class="bot-info">
+              <h3>Ayla</h3>
+              <p>Sua assistente virtual</p>
+            </div>
+          </div>
+          <div class="chat-status">
+            <span class="status-dot"></span> Online &nbsp;|&nbsp; 🛡️ Conversa segura
+          </div>
+        </header>
+
+        <!-- Onde as mensagens aparecem -->
+        <div class="chat-box" id="chat-box">
+          <p class="chat-msg chat-msg--received">Olá! Eu sou a <strong>Ayla</strong>, sua assistente virtual. 💜<br><br>Estou aqui para te apoiar, responder suas dúvidas sobre direitos, orientar sobre como denunciar e indicar os melhores caminhos de ajuda.<br><br>Como posso te ajudar hoje?</p>
+        </div>
+
+      </div>
+
+      <!-- Controlos de Entrada (Imediatamente abaixo do chat) -->
+      <div class="controls-wrapper">
+        <div class="input-area">
+          <input type="text" id="user-input" placeholder="Digite sua mensagem aqui..." onkeypress="handleKeyPress(event)">
+          <div class="input-actions">
+            <button class="btn-icon">📎</button>
+            <button class="btn-icon">🎤</button>
+            <button onclick="sendMessage()" class="btn-send">➤</button>
+          </div>
+        </div>
+        
+        <a href="tel:180" class="btn-call-180">
+          <span class="icon">📞</span>
+          <div>
+            <strong>Ligar 180</strong>
+            <span>Violência contra a mulher é crime. Denuncie!</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Cartões de Acesso Rápido -->
+      <div class="quick-access">
+        <h3>⚡ Acesso rápido</h3>
+        <div class="cards-grid">
+          <div class="card">
+            <div class="card-icon" style="background: #9b72cb;">⚖️</div>
+            <h4>Quais são os meus direitos?</h4>
+            <p>Saiba sobre seus direitos e garantias.</p>
+            <span class="card-arrow">➔</span>
+          </div>
+          <div class="card">
+            <div class="card-icon" style="background: #48BCAE;">🛡️</div>
+            <h4>Como denunciar de forma anônima?</h4>
+            <p>Entenda os canais e passo a passo.</p>
+            <span class="card-arrow">➔</span>
+          </div>
+          <div class="card">
+            <div class="card-icon" style="background: #7D6B9C;">💜</div>
+            <h4>Preciso de acolhimento psicológico</h4>
+            <p>Saiba onde encontrar apoio emocional.</p>
+            <span class="card-arrow">➔</span>
+          </div>
+          <div class="card">
+            <div class="card-icon" style="background: #5A9BD5;">🏥</div>
+            <h4>Onde buscar ajuda perto de mim?</h4>
+            <p>Serviços, abrigos e atendimento especializado.</p>
+            <span class="card-arrow">➔</span>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- O script original que faz a ligação com o Python continua aqui -->
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

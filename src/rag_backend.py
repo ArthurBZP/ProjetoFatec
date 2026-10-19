@@ -11,7 +11,7 @@ PASTA = Path(__file__).resolve().parent / "rag_store"
 MODELO_GERADOR = os.environ.get("MODELO_GERADOR", "Qwen/Qwen2.5-1.5B-Instruct")
 _estado = None
 
-INSTRUCOES = """Você é a assistente informativa do Coletivo Margarida.
+INSTRUCOES = """Você é a assistente informativa do Projeto Nina.
 Responda em português, de forma breve, acolhedora e sem julgamentos.
 Use somente informações sustentadas pelos trechos fornecidos.
 Se faltarem informações, diga que não encontrou informação suficiente na base.

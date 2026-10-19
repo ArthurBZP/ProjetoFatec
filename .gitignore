@@ -1,2 +1,23 @@
 .env
 src/__pycache__/
+# Arquivos temporários do Python
+__pycache__/
+*.py[cod]
+
+# Ambientes virtuais
+.venv/
+venv/
+env/
+
+# Chaves e configurações particulares
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+
+# Base RAG local
+src/rag_store/
+src/rag_store_antigo/
+base_rag.zip

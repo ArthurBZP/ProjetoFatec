@@ -261,7 +261,7 @@
   
   /* O CSS adiciona o rostinho do robô automaticamente ao lado da mensagem recebida */
   .chat-msg--received::before {
-    content: "🤖";
+    content: ""; background-image: url("../img/nina-avatar.png"); background-size: cover; background-position: center;
     position: absolute;
     left: -50px;
     top: 0;
@@ -417,3 +417,90 @@
     .controls-wrapper { flex-direction: column; }
     .cards-grid { grid-template-columns: 1fr; }
   }
+
+/* Duas opções no acesso rápido + páginas internas */
+.cards-grid { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 768px) { .cards-grid { grid-template-columns: 1fr; } }
+a.card { display: block; color: inherit; }
+.subpage { max-width: 820px; margin: 0 auto; padding: 48px 20px 64px; }
+.subpage h2 { font-size: 32px; font-weight: 800; color: var(--brand-purple); line-height: 1.2; margin-bottom: 8px; }
+.subpage .lead { color: var(--text-muted); margin-bottom: 28px; }
+.back-link { display: inline-block; margin-bottom: 20px; font-weight: 600; color: var(--brand-purple); }
+.link-list { display: flex; flex-direction: column; gap: 14px; }
+.link-item { display: flex; align-items: center; gap: 16px; background: var(--bg-white); padding: 18px 22px; border-radius: var(--radius-md); box-shadow: var(--shadow-sm); transition: transform .2s, box-shadow .2s; }
+.link-item:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.link-item strong { display: block; color: var(--brand-purple); font-size: 17px; }
+.link-item span { font-size: 14px; color: var(--text-muted); }
+.link-item .go { margin-left: auto; color: var(--brand-purple); font-size: 20px; }
+.num { min-width: 76px; font-size: 32px; font-weight: 800; color: var(--brand-pink-text); line-height: 1; }
+.num-item.main { background: var(--brand-pink); }
+.note { margin-top: 24px; font-size: 14px; color: var(--text-muted); }
+
+/* Página de denúncia */
+.subpage h3.sec { font-size: 22px; color: var(--brand-purple); margin: 40px 0 14px; }
+.steps { list-style: none; counter-reset: passo; display: flex; flex-direction: column; gap: 14px; }
+.steps li { counter-increment: passo; display: flex; gap: 16px; align-items: flex-start; background: var(--bg-white); padding: 18px 22px; border-radius: var(--radius-md); box-shadow: var(--shadow-sm); }
+.steps li::before { content: counter(passo); flex: none; width: 34px; height: 34px; border-radius: 50%; background: var(--brand-purple); color: #fff; font-weight: 800; display: grid; place-items: center; }
+.steps strong { display: block; color: var(--brand-purple); }
+.steps span { font-size: 14px; color: var(--text-muted); }
+.tips { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.tip { background: var(--brand-light-purple); padding: 18px 22px; border-radius: var(--radius-md); }
+.tip strong { display: block; color: var(--brand-purple); margin-bottom: 4px; }
+.tip span { font-size: 14px; color: var(--text-muted); }
+.alert { background: var(--brand-pink); color: var(--brand-pink-text); padding: 16px 22px; border-radius: var(--radius-md); font-weight: 600; margin-bottom: 24px; }
+@media (max-width: 768px) { .tips { grid-template-columns: 1fr; } }
+
+/* Marca: Projeto Nina */
+.logo-icon { display: grid; place-items: center; width: 46px; height: 46px; border-radius: 50%; background: var(--brand-light-purple); font-size: 24px; }
+.logo-text h1 { font-size: 26px; letter-spacing: .2px; background: linear-gradient(90deg, var(--brand-purple), #D2679A); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+/* Fundo suave com formas fluidas (rosa, lilás e toque de verde-água) */
+body::before {
+  content: ""; position: fixed; inset: 0; z-index: -1;
+  background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNDQwIDkwMCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQgc2xpY2UiPgo8ZGVmcz48ZmlsdGVyIGlkPSJiIiB4PSItMzAlIiB5PSItMzAlIiB3aWR0aD0iMTYwJSIgaGVpZ2h0PSIxNjAlIj48ZmVHYXVzc2lhbkJsdXIgc3RkRGV2aWF0aW9uPSI1NSIvPjwvZmlsdGVyPjwvZGVmcz4KPGcgZmlsdGVyPSJ1cmwoI2IpIj4KPGVsbGlwc2UgY3g9IjIwMCIgY3k9IjEyMCIgcng9IjQ0MCIgcnk9IjMwMCIgZmlsbD0iI0Y5QjlENiIgb3BhY2l0eT0iLjU1Ii8+CjxlbGxpcHNlIGN4PSIxMjYwIiBjeT0iMzAwIiByeD0iNDcwIiByeT0iMzQwIiBmaWxsPSIjQjdBNkVBIiBvcGFjaXR5PSIuNSIvPgo8ZWxsaXBzZSBjeD0iMTUwIiBjeT0iODMwIiByeD0iNDAwIiByeT0iMjYwIiBmaWxsPSIjQTZFMkRBIiBvcGFjaXR5PSIuMzUiLz4KPGVsbGlwc2UgY3g9IjEyMDAiIGN5PSI4MjAiIHJ4PSI0NDAiIHJ5PSIyNjAiIGZpbGw9IiNGN0M2REQiIG9wYWNpdHk9Ii41NSIvPgo8L2c+CjxwYXRoIGQ9Ik0wLDcyMCBDMzAwLDU3MCA2MjAsODgwIDEwMDAsNzEwIFMxMzgwLDU4MCAxNDQwLDYzMCBMMTQ0MCw5MDAgTDAsOTAwIFoiIGZpbGw9IiNmZmYiIG9wYWNpdHk9Ii4yMiIvPgo8cGF0aCBkPSJNMCw4MDAgQzM0MCw2OTAgNzAwLDkzMCAxMDgwLDc5MCBTMTQwMCw3MDAgMTQ0MCw3MzAgTDE0NDAsOTAwIEwwLDkwMCBaIiBmaWxsPSIjZmZmIiBvcGFjaXR5PSIuMTgiLz4KPGcgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9Ii44IiBvcGFjaXR5PSIuNSI+PHBhdGggZD0iTS02MCw1NjAgQzMwMCw0MDAgNTQwLDgwMCA4ODAsNTkwIFMxMjYwLDMzMCAxNTIwLDQ1MCIgLz48cGF0aCBkPSJNLTYwLDU2NSBDMzAwLDQwNSA1NDAsODA1IDg4MCw1OTUgUzEyNjAsMzM1IDE1MjAsNDU1IiAvPjxwYXRoIGQ9Ik0tNjAsNTcwIEMzMDAsNDEwIDU0MCw4MTAgODgwLDYwMCBTMTI2MCwzNDAgMTUyMCw0NjAiIC8+PHBhdGggZD0iTS02MCw1NzUgQzMwMCw0MTUgNTQwLDgxNSA4ODAsNjA1IFMxMjYwLDM0NSAxNTIwLDQ2NSIgLz48cGF0aCBkPSJNLTYwLDU4MCBDMzAwLDQyMCA1NDAsODIwIDg4MCw2MTAgUzEyNjAsMzUwIDE1MjAsNDcwIiAvPjxwYXRoIGQ9Ik0tNjAsNTg1IEMzMDAsNDI1IDU0MCw4MjUgODgwLDYxNSBTMTI2MCwzNTUgMTUyMCw0NzUiIC8+PHBhdGggZD0iTS02MCw1OTAgQzMwMCw0MzAgNTQwLDgzMCA4ODAsNjIwIFMxMjYwLDM2MCAxNTIwLDQ4MCIgLz48cGF0aCBkPSJNLTYwLDU5NSBDMzAwLDQzNSA1NDAsODM1IDg4MCw2MjUgUzEyNjAsMzY1IDE1MjAsNDg1IiAvPjxwYXRoIGQ9Ik0tNjAsNjAwIEMzMDAsNDQwIDU0MCw4NDAgODgwLDYzMCBTMTI2MCwzNzAgMTUyMCw0OTAiIC8+PHBhdGggZD0iTS02MCw2MDUgQzMwMCw0NDUgNTQwLDg0NSA4ODAsNjM1IFMxMjYwLDM3NSAxNTIwLDQ5NSIgLz48cGF0aCBkPSJNLTYwLDYxMCBDMzAwLDQ1MCA1NDAsODUwIDg4MCw2NDAgUzEyNjAsMzgwIDE1MjAsNTAwIiAvPjxwYXRoIGQ9Ik0tNjAsNjE1IEMzMDAsNDU1IDU0MCw4NTUgODgwLDY0NSBTMTI2MCwzODUgMTUyMCw1MDUiIC8+PHBhdGggZD0iTS02MCw2MjAgQzMwMCw0NjAgNTQwLDg2MCA4ODAsNjUwIFMxMjYwLDM5MCAxNTIwLDUxMCIgLz48cGF0aCBkPSJNLTYwLDYyNSBDMzAwLDQ2NSA1NDAsODY1IDg4MCw2NTUgUzEyNjAsMzk1IDE1MjAsNTE1IiAvPjxwYXRoIGQ9Ik0tNjAsNjMwIEMzMDAsNDcwIDU0MCw4NzAgODgwLDY2MCBTMTI2MCw0MDAgMTUyMCw1MjAiIC8+PHBhdGggZD0iTS02MCw2MzUgQzMwMCw0NzUgNTQwLDg3NSA4ODAsNjY1IFMxMjYwLDQwNSAxNTIwLDUyNSIgLz48cGF0aCBkPSJNLTYwLDY0MCBDMzAwLDQ4MCA1NDAsODgwIDg4MCw2NzAgUzEyNjAsNDEwIDE1MjAsNTMwIiAvPjxwYXRoIGQ9Ik0tNjAsNjQ1IEMzMDAsNDg1IDU0MCw4ODUgODgwLDY3NSBTMTI2MCw0MTUgMTUyMCw1MzUiIC8+PHBhdGggZD0iTTYyMCwtNDAgQzg2MCwyNDAgMTA2MCw2MCAxNTAwLDMzMCIgLz48cGF0aCBkPSJNNjIwLC0zNCBDODYwLDI0NiAxMDYwLDY2IDE1MDAsMzM2IiAvPjxwYXRoIGQ9Ik02MjAsLTI4IEM4NjAsMjUyIDEwNjAsNzIgMTUwMCwzNDIiIC8+PHBhdGggZD0iTTYyMCwtMjIgQzg2MCwyNTggMTA2MCw3OCAxNTAwLDM0OCIgLz48cGF0aCBkPSJNNjIwLC0xNiBDODYwLDI2NCAxMDYwLDg0IDE1MDAsMzU0IiAvPjxwYXRoIGQ9Ik02MjAsLTEwIEM4NjAsMjcwIDEwNjAsOTAgMTUwMCwzNjAiIC8+PHBhdGggZD0iTTYyMCwtNCBDODYwLDI3NiAxMDYwLDk2IDE1MDAsMzY2IiAvPjxwYXRoIGQ9Ik02MjAsMiBDODYwLDI4MiAxMDYwLDEwMiAxNTAwLDM3MiIgLz48cGF0aCBkPSJNNjIwLDggQzg2MCwyODggMTA2MCwxMDggMTUwMCwzNzgiIC8+PHBhdGggZD0iTTYyMCwxNCBDODYwLDI5NCAxMDYwLDExNCAxNTAwLDM4NCIgLz48cGF0aCBkPSJNNjIwLDIwIEM4NjAsMzAwIDEwNjAsMTIwIDE1MDAsMzkwIiAvPjxwYXRoIGQ9Ik02MjAsMjYgQzg2MCwzMDYgMTA2MCwxMjYgMTUwMCwzOTYiIC8+PHBhdGggZD0iTTYyMCwzMiBDODYwLDMxMiAxMDYwLDEzMiAxNTAwLDQwMiIgLz48cGF0aCBkPSJNNjIwLDM4IEM4NjAsMzE4IDEwNjAsMTM4IDE1MDAsNDA4IiAvPjwvZz4KPGcgZmlsbD0iI2ZmZiIgb3BhY2l0eT0iLjYiPjxjaXJjbGUgY3g9IjQwIiBjeT0iNjAwIiByPSIyLjIiLz48Y2lyY2xlIGN4PSI2MCIgY3k9IjYwMCIgcj0iMi4yIi8+PGNpcmNsZSBjeD0iODAiIGN5PSI2MDAiIHI9IjIuMiIvPjxjaXJjbGUgY3g9IjEwMCIgY3k9IjYwMCIgcj0iMi4yIi8+PGNpcmNsZSBjeD0iMTIwIiBjeT0iNjAwIiByPSIyLjIiLz48Y2lyY2xlIGN4PSIxNDAiIGN5PSI2MDAiIHI9IjIuMiIvPjxjaXJjbGUgY3g9IjQwIiBjeT0iNjIwIiByPSIyLjIiLz48Y2lyY2xlIGN4PSI2MCIgY3k9IjYyMCIgcj0iMi4yIi8+PGNpcmNsZSBjeD0iODAiIGN5PSI2MjAiIHI9IjIuMiIvPjxjaXJjbGUgY3g9IjEwMCIgY3k9IjYyMCIgcj0iMi4yIi8+PGNpcmNsZSBjeD0iMTIwIiBjeT0iNjIwIiByPSIyLjIiLz48Y2lyY2xlIGN4PSIxNDAiIGN5PSI2MjAiIHI9IjIuMiIvPjxjaXJjbGUgY3g9IjQwIiBjeT0iNjQwIiByPSIyLjIiLz48Y2lyY2xlIGN4PSI2MCIgY3k9IjY0MCIgcj0iMi4yIi8+PGNpcmNsZSBjeD0iODAiIGN5PSI2NDAiIHI9IjIuMiIvPjxjaXJjbGUgY3g9IjEwMCIgY3k9IjY0MCIgcj0iMi4yIi8+PGNpcmNsZSBjeD0iMTIwIiBjeT0iNjQwIiByPSIyLjIiLz48Y2lyY2xlIGN4PSIxNDAiIGN5PSI2NDAiIHI9IjIuMiIvPjxjaXJjbGUgY3g9IjQwIiBjeT0iNjYwIiByPSIyLjIiLz48Y2lyY2xlIGN4PSI2MCIgY3k9IjY2MCIgcj0iMi4yIi8+PGNpcmNsZSBjeD0iODAiIGN5PSI2NjAiIHI9IjIuMiIvPjxjaXJjbGUgY3g9IjEwMCIgY3k9IjY2MCIgcj0iMi4yIi8+PGNpcmNsZSBjeD0iMTIwIiBjeT0iNjYwIiByPSIyLjIiLz48Y2lyY2xlIGN4PSIxNDAiIGN5PSI2NjAiIHI9IjIuMiIvPjxjaXJjbGUgY3g9IjQwIiBjeT0iNjgwIiByPSIyLjIiLz48Y2lyY2xlIGN4PSI2MCIgY3k9IjY4MCIgcj0iMi4yIi8+PGNpcmNsZSBjeD0iODAiIGN5PSI2ODAiIHI9IjIuMiIvPjxjaXJjbGUgY3g9IjEwMCIgY3k9IjY4MCIgcj0iMi4yIi8+PGNpcmNsZSBjeD0iMTIwIiBjeT0iNjgwIiByPSIyLjIiLz48Y2lyY2xlIGN4PSIxNDAiIGN5PSI2ODAiIHI9IjIuMiIvPjxjaXJjbGUgY3g9IjQwIiBjeT0iNzAwIiByPSIyLjIiLz48Y2lyY2xlIGN4PSI2MCIgY3k9IjcwMCIgcj0iMi4yIi8+PGNpcmNsZSBjeD0iODAiIGN5PSI3MDAiIHI9IjIuMiIvPjxjaXJjbGUgY3g9IjEwMCIgY3k9IjcwMCIgcj0iMi4yIi8+PGNpcmNsZSBjeD0iMTIwIiBjeT0iNzAwIiByPSIyLjIiLz48Y2lyY2xlIGN4PSIxNDAiIGN5PSI3MDAiIHI9IjIuMiIvPjwvZz4KPHBhdGggZD0iTTAsLTMwIEMtMjAsLTYwIC03MCwtNDUgLTYwLC01IEMtNTIsMzAgLTEwLDUwIDAsNzAgQzEwLDUwIDUyLDMwIDYwLC01IEM3MCwtNDUgMjAsLTYwIDAsLTMwIFoiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDEyOTAgMTMwKSBzY2FsZSgxLjcpIiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMS4yIiBvcGFjaXR5PSIuNiIvPgo8L3N2Zz4=") center / cover no-repeat,
+              linear-gradient(135deg, #FCE4F0 0%, #EADDF7 45%, #DAD4F3 75%, #DDF3F1 100%);
+}
+/* Superfícies em vidro translúcido para a leitura continuar confortável */
+.navbar { background: rgba(255,255,255,.62); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+.chat-container, .card, .input-area, .link-item, .steps li {
+  background: rgba(255,255,255,.80); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,.75);
+}
+.chat-header { background: rgba(255,255,255,.5); }
+.tip { background: rgba(255,255,255,.6); }
+.chat-msg--received { background-color: rgba(241,240,250,.95); }
+
+/* Tipografia: títulos em Fredoka (redonda e "gordinha"), texto em Nunito */
+:root { --font-title: 'Fredoka', 'Nunito', sans-serif; }
+h1, h2, h3, h4, .sidebar-title, .btn-exit strong, .btn-call-180 strong, .features-list strong,
+.nav-links a, .link-item strong, .steps strong, .tip strong, .num, .back-link, .sidebar-illustration p { font-family: var(--font-title); }
+h2, h3, .sidebar-title, .num, .logo-text h1 { font-weight: 600; letter-spacing: .2px; }
+.nav-links a { font-weight: 500; font-size: 17px; }
+.card h4 { font-size: 16px; font-weight: 600; }
+.bot-info h3 { font-size: 20px; }
+.chat-msg { font-size: 16px; }
+.sidebar-title { font-size: 36px; }
+
+/* Marca maior: Projeto Nina */
+.logo { gap: 14px; }
+.logo-icon { width: 56px; height: 56px; font-size: 28px; }
+.logo-text h1 { font-size: 36px; font-weight: 700; line-height: 1; }
+.logo-text p { font-size: 14px; margin-top: 5px; }
+@media (max-width: 768px) {
+  .logo-icon { width: 46px; height: 46px; font-size: 24px; }
+  .logo-text h1 { font-size: 28px; }
+  .sidebar-title { font-size: 30px; }
+}
+
+/* Logo do projeto no topo e foto da Nina no chat */
+.navbar { padding: 8px 40px; }
+.logo-img { height: 84px; width: auto; display: block; }
+.bot-avatar { overflow: hidden; }
+.bot-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+@media (max-width: 768px) { .navbar { padding: 8px 16px; } .logo-img { height: 64px; } }
+
+/* Corrige a foto da Nina ao lado das mensagens e aumenta o logo */
+.chat-msg--received::before { content: ""; background: #E3E1F5 var(--nina-avatar) center / cover no-repeat; }
+.navbar { padding: 6px 40px; }
+.logo-img { height: 112px; }
+@media (max-width: 768px) { .logo-img { height: 84px; } }

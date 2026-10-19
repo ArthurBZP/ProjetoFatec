@@ -3,33 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Segura — Você não está sozinha</title>
+  <title>Projeto Nina — Você não está sozinha</title>
   
   <!-- Fonte Nunito para um visual mais acolhedor e moderno -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
   
   <!-- O Flask carrega o CSS a partir da pasta static -->
   <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <style>:root { --nina-avatar: url("{{ url_for('static', filename='img/nina-avatar.png') }}"); }</style>
 </head>
 <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
 <body>
 
   <!-- Navegação Superior -->
   <header class="navbar">
-    <div class="logo">
-      <span class="logo-icon">💜</span>
-      <div class="logo-text">
-        <h1>Segura</h1>
-        <p>Você não está sozinha</p>
-      </div>
-    </div>
+    <a class="logo" href="/" aria-label="Projeto Nina, página inicial">
+      <img class="logo-img" src="{{ url_for('static', filename='img/logo-nina.png') }}" alt="Projeto Nina">
+    </a>
     <nav class="nav-links">
       <a href="#"><span class="icon">🏠</span> Início</a>
-      <a href="#"><span class="icon">🤝</span> Apoio</a>
-      <a href="#"><span class="icon">📋</span> Direitos</a>
-      <a href="#"><span class="icon">📞</span> Contatos de Emergência</a>
+      <a href="{{ url_for('static', filename='direitos.html') }}"><span class="icon">📋</span> Direitos</a>
+      <a href="{{ url_for('static', filename='emergencia.html') }}"><span class="icon">📞</span> Contatos de Emergência</a>
     </nav>
     <a href="https://google.com" class="btn-exit">
       <span class="icon">🚪</span>
@@ -87,9 +83,9 @@
         
         <header class="chat-header">
           <div class="bot-profile">
-            <div class="bot-avatar">🤖</div>
+            <div class="bot-avatar"><img src="{{ url_for('static', filename='img/nina-avatar.png') }}" alt="Nina"></div>
             <div class="bot-info">
-              <h3>Ayla</h3>
+              <h3>Nina</h3>
               <p>Sua assistente virtual</p>
             </div>
           </div>
@@ -100,7 +96,7 @@
 
         <!-- Onde as mensagens aparecem -->
         <div class="chat-box" id="chat-box">
-          <p class="chat-msg chat-msg--received">Olá! Eu sou a <strong>Ayla</strong>, sua assistente virtual. 💜<br><br>Estou aqui para te apoiar, responder suas dúvidas sobre direitos, orientar sobre como denunciar e indicar os melhores caminhos de ajuda.<br><br>Como posso te ajudar hoje?</p>
+          <p class="chat-msg chat-msg--received">Olá! Eu sou a <strong>Nina</strong>, sua assistente virtual. 💜<br><br>Estou aqui para te apoiar, responder suas dúvidas sobre direitos, orientar sobre como denunciar e indicar os melhores caminhos de ajuda.<br><br>Como posso te ajudar hoje?</p>
         </div>
 
       </div>
@@ -110,8 +106,6 @@
         <div class="input-area">
           <input type="text" id="user-input" placeholder="Digite sua mensagem aqui..." onkeypress="handleKeyPress(event)">
           <div class="input-actions">
-            <button class="btn-icon">📎</button>
-            <button class="btn-icon">🎤</button>
             <button onclick="sendMessage()" class="btn-send">➤</button>
           </div>
         </div>
@@ -129,30 +123,18 @@
       <div class="quick-access">
         <h3>⚡ Acesso rápido</h3>
         <div class="cards-grid">
-          <div class="card">
+          <a class="card" href="{{ url_for('static', filename='direitos.html') }}">
             <div class="card-icon" style="background: #9b72cb;">⚖️</div>
             <h4>Quais são os meus direitos?</h4>
             <p>Saiba sobre seus direitos e garantias.</p>
             <span class="card-arrow">➔</span>
-          </div>
-          <div class="card">
+          </a>
+          <a class="card" href="{{ url_for('static', filename='denuncia.html') }}">
             <div class="card-icon" style="background: #48BCAE;">🛡️</div>
             <h4>Como denunciar de forma anônima?</h4>
             <p>Entenda os canais e passo a passo.</p>
             <span class="card-arrow">➔</span>
-          </div>
-          <div class="card">
-            <div class="card-icon" style="background: #7D6B9C;">💜</div>
-            <h4>Preciso de acolhimento psicológico</h4>
-            <p>Saiba onde encontrar apoio emocional.</p>
-            <span class="card-arrow">➔</span>
-          </div>
-          <div class="card">
-            <div class="card-icon" style="background: #5A9BD5;">🏥</div>
-            <h4>Onde buscar ajuda perto de mim?</h4>
-            <p>Serviços, abrigos e atendimento especializado.</p>
-            <span class="card-arrow">➔</span>
-          </div>
+          </a>
         </div>
       </div>
 
